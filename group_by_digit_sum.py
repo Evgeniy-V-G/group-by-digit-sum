@@ -111,7 +111,7 @@ if __name__ == "__main__":
     num_customers = check_positive(input('Введите количество клиентов: '))
     num_first_id = check_positive(input('Введите первый ID в последовательности: '))
     print('Число покупателей, попадающих в каждую группу:')
-    second_dict = n_customers_per_group_from_start(num_customers, n_first_id)
+    second_dict = n_customers_per_group_from_start(num_customers, num_first_id)
     print(second_dict)
     
     if input('Хотите визуализацию последнего распределения? (Y / N) ').lower() == 'y':
@@ -120,7 +120,7 @@ if __name__ == "__main__":
         import matplotlib.pyplot as plt
         
         
-        second_dict = n_customers_per_group_from_start(num_customers, n_first_id)
+        second_dict = n_customers_per_group_from_start(num_customers, num_first_id)
         plt.bar(list(second_dict.keys()), second_dict.values(), color='b')
         plt.show()
 
