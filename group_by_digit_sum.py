@@ -62,7 +62,7 @@ def shift_add(lst_1, lst_2, shift=2):
     '''
     Сложение со сдвигом: принимает 2 списка целых чисел и ненулевой сдвиг.
     Ко всем числам первого списка, начиная с позиции сдвига, прибавляет по одному числу
-    из второго списка (с индексом большим на сзачение сдвига), 
+    из второго списка (с индексом большим на значение сдвига), 
     когда первый список заканчивается, прибавляет к нулям, например:
     [1, 2, 3, 4, 5] + [1, 1, 1, 1, 1] со сдвигом 3 = [1, 2, 3, 5, 6, 1, 1, 1], а
     [1, 10, 100, 1000] + [2, 20, 200, 2000] со сдвигом 1 = [1, 12, 120, 1200, 2000]
@@ -71,7 +71,7 @@ def shift_add(lst_1, lst_2, shift=2):
     len_common = max(len_1, len_2)
     zeroes_1 = len_common - len_1     # вычисление, сколько добавить нулей к спискам
     zeroes_2 = len_common - len_2
-    zip_of_lists = zip(lst_1 + [0] * (zeroes_1), [0] * (shift) + lst_2 + [0] * (zeroes_2))
+    zip_of_lists = zip(lst_1 + [0] * zeroes_1, [0] * shift + lst_2 + [0] * zeroes_2)
     return [sum(values) for values in zip_of_lists]
 
 
@@ -103,15 +103,15 @@ def check_positive(num):
 if __name__ == "__main__":
 
     print('Демонстрация работы первой функции.') 
-    n_customers = check_positive(input('Введите количество клиентов: '))
+    num_customers = check_positive(input('Введите количество клиентов: '))
     print('Число покупателей, попадающих в каждую группу:') 
-    print(n_customers_per_group(n_customers), '\n')
+    print(n_customers_per_group(num_customers), '\n')
     
     print('Демонстрация работы второй функции.') 
-    n_customers = check_positive(input('Введите количество клиентов: '))
-    n_first_id = check_positive(input('Введите первый ID в последовательности: '))
+    num_customers = check_positive(input('Введите количество клиентов: '))
+    num_first_id = check_positive(input('Введите первый ID в последовательности: '))
     print('Число покупателей, попадающих в каждую группу:')
-    second_dict = n_customers_per_group_from_start(n_customers, n_first_id)
+    second_dict = n_customers_per_group_from_start(num_customers, n_first_id)
     print(second_dict)
     
     if input('Хотите визуализацию последнего распределения? (Y / N) ').lower() == 'y':
@@ -120,7 +120,7 @@ if __name__ == "__main__":
         import matplotlib.pyplot as plt
         
         
-        second_dict = n_customers_per_group_from_start(n_customers, n_first_id)
+        second_dict = n_customers_per_group_from_start(num_customers, n_first_id)
         plt.bar(list(second_dict.keys()), second_dict.values(), color='b')
         plt.show()
 
